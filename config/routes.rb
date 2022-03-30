@@ -1,26 +1,9 @@
 Rails.application.routes.draw do
-  get 'comments/index'
-  get 'comments/new'
-  get 'comments/show'
-  get 'comments/edit'
-  get 'comments/delete'
-  get 'movies/index'
-  get 'movies/new'
-  get 'movies/show'
-  get 'movies/edit'
-  get 'movies/delete'
-  get 'playlists/index'
-  get 'playlists/new'
-  get 'playlists/show'
-  get 'playlists/edit'
-  get 'playlists/delete'
-  get 'playlist/index'
-  get 'playlist/new'
-  get 'playlist/show'
-  get 'playlist/edit'
-  get 'playlist/delete'
-  get 'users/show'
-  get 'users/new'
-  get 'users/edit'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :movies, only: [:index, :show] do
+    resources :comments, only: [:index, :new, :create]
+  end
+
+  resources :users, except: [:edit, :update]
+  resources :playlists
 end
